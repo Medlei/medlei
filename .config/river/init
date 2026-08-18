@@ -1,0 +1,160 @@
+#!/bin/sh
+
+delta_brightness=4
+delta_moveView=64
+delta_resizeView=64
+delta_volume=4
+displayScale=2
+
+# bar
+	while echo all status $(cat /sys/class/power_supply/BAT0/capacity)% \($(cat /sys/class/power_supply/BAT0/status | tr "[:upper:]" "[:lower:]")\) \| $(date +"%a, %b %d | %I:%M %p %Z"); do sleep 1; done | sandbar -font monospace:size=10 -hide-normal-mode -scale $displayScale &
+# brightness; mappings
+	riverctl map -repeat locked Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
+	riverctl map -repeat locked Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
+	riverctl map -repeat locked None XF86MonBrightnessDown spawn "brightnessctl s $delta_brightness%-"
+	riverctl map -repeat locked None XF86MonBrightnessUp spawn "brightnessctl s +$delta_brightness%"
+	riverctl map -repeat normal Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
+	riverctl map -repeat normal Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
+	riverctl map -repeat normal None XF86MonBrightnessDown spawn "brightnessctl s $delta_brightness%-"
+	riverctl map -repeat normal None XF86MonBrightnessUp spawn "brightnessctl s +$delta_brightness%"
+# cursor
+	riverctl hide-cursor timeout 4096
+	riverctl hide-cursor when-typing enabled
+	riverctl set-cursor-warp on-focus-change
+	# riverctl xcursor-theme
+# focus
+	# config
+		riverctl focus-follows-cursor normal
+	# mappings
+		# output
+			riverctl map normal Mod4 bracketleft focus-output previous
+			riverctl map normal Mod4 bracketright focus-output next
+		# tags by...
+			# returning to previous
+				riverctl map normal Mod4 Tab focus-previous-tags
+			# setting
+				for i in $(seq 1 8); do riverctl map normal Mod4 $i set-focused-tags $((1 << ($i - 1))); done
+		# view
+			riverctl map normal Mod4 Down focus-view down
+			riverctl map normal Mod4 Left focus-view left
+			riverctl map normal Mod4 Right focus-view right
+			riverctl map normal Mod4 Up focus-view up
+# focused view
+	# config
+		# riverctl border-color-focused
+	# mappings
+		# close
+			riverctl map normal Mod4+Shift Q close
+		# float
+			riverctl map normal Alt+Mod4 Return toggle-float
+		# fullscreen
+			riverctl map normal Mod4 F toggle-fullscreen
+		# move by...
+			# nudging
+				riverctl map -repeat normal Alt+Control+Mod4 Down move down $delta_moveView
+				riverctl map -repeat normal Alt+Control+Mod4 Left move left $delta_moveView
+				riverctl map -repeat normal Alt+Control+Mod4 Right move right $delta_moveView
+				riverctl map -repeat normal Alt+Control+Mod4 Up move up $delta_moveView
+			# sending to output
+				riverctl map normal Control+Mod4 bracketleft send-to-output previous
+				riverctl map normal Control+Mod4 bracketright send-to-output next
+			# snapping
+				riverctl map normal Alt+Control+Mod4+Shift Down snap down
+				riverctl map normal Alt+Control+Mod4+Shift Left snap left
+				riverctl map normal Alt+Control+Mod4+Shift Right snap right
+				riverctl map normal Alt+Control+Mod4+Shift Up snap up
+			# swapping
+				riverctl map normal Control+Mod4 Down swap down
+				riverctl map normal Control+Mod4 Left swap left
+				riverctl map normal Control+Mod4 Right swap right
+				riverctl map normal Control+Mod4 Up swap up
+			# zooming
+				riverctl map normal Control+Mod4 Return zoom
+		# resize...
+			# horizontally
+				riverctl map -repeat normal Alt+Mod4 Left resize horizontal -$delta_resizeView
+				riverctl map -repeat normal Alt+Mod4 Right resize horizontal +$delta_resizeView
+			# vertically
+				riverctl map -repeat normal Alt+Mod4 Down resize vertical +$delta_resizeView
+				riverctl map -repeat normal Alt+Mod4 Up resize vertical -$delta_resizeView
+		# tag by...
+			# returning to previous
+				riverctl map normal Control+Mod4 Tab send-to-previous-tags
+			# setting...
+				for i in $(seq 1 8); do riverctl map normal Control+Mod4 $i set-view-tags $((1 << ($i - 1))); done
+# gamma
+	wlsunset_init.bash &
+# idle
+	swayidle -w &
+# inputs
+	riverctl input pointer* drag-lock enabled
+	riverctl input pointer* pointer-accel 0.32
+	riverctl input pointer* tap enabled
+	riverctl set-repeat 32 512
+# layouts
+	# config
+		riverctl default-layout rivertile
+		rivertile -main-location right -main-ratio 0.5 -outer-padding 2 -view-padding 2 &
+	# mappings; adjust...
+		# main location
+			riverctl map normal Control+Mod4 H send-layout-cmd rivertile 'main-location left'
+			riverctl map normal Control+Mod4 J send-layout-cmd rivertile 'main-location down'
+			riverctl map normal Control+Mod4 K send-layout-cmd rivertile 'main-location right'
+			riverctl map normal Control+Mod4 U send-layout-cmd rivertile 'main-location up'
+		# main ratio
+			riverctl map -repeat normal Control+Mod4 equal send-layout-cmd rivertile 'main-ratio +0.04'
+			riverctl map -repeat normal Control+Mod4 minus send-layout-cmd rivertile 'main-ratio -0.04'
+		# number of views in main area
+			riverctl map normal Control+Mod4+Shift equal send-layout-cmd rivertile 'main-count +1'
+			riverctl map normal Control+Mod4+Shift minus send-layout-cmd rivertile 'main-count -1'
+# miscellaneous
+	# config
+		riverctl allow-tearing enabled
+		# riverctl background-color
+		# riverctl border-color-unfocused
+		# riverctl border-color-urgent
+		riverctl border-width 1
+		riverctl default-attach-mode below
+	# mappings
+		# browser
+			riverctl map normal Mod4 T spawn helium-browser
+		# exit
+			riverctl map normal Mod4+Shift Escape exit
+		# launcher
+			# riverctl map normal Mod4 T spawn fuzzel
+		# lock
+			riverctl map normal Mod4 L spawn swaylock
+		# open terminal
+			riverctl map normal Mod4 Return spawn foot
+		# screenshot
+			riverctl map normal Mod4+Shift S spawn screenshot.sh
+# mpris; mappings
+	riverctl map locked None XF86AudioNext spawn 'playerctl next'
+	riverctl map locked None XF86AudioPlay spawn 'playerctl play-pause'
+	riverctl map locked None XF86AudioPrev spawn 'playerctl previous'
+	riverctl map normal None XF86AudioNext spawn 'playerctl next'
+	riverctl map normal None XF86AudioPlay spawn 'playerctl play-pause'
+	riverctl map normal None XF86AudioPrev spawn 'playerctl previous'
+# outputs
+	# config
+		wlr-randr --output eDP-1 --scale $displayScale
+	# mappings
+		# output-attach-mode
+		# output-layout
+# tags; mappings
+	# spawn-tagmask
+# volume; mappings
+	# microphone
+		riverctl map -repeat locked Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
+	    riverctl map -repeat locked Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
+	    riverctl map -repeat normal Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
+	    riverctl map -repeat normal Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
+		riverctl map locked Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
+		riverctl map normal Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
+	# speaker
+	    riverctl map -repeat locked None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
+	    riverctl map -repeat locked None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
+	    riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
+	    riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
+		riverctl map locked None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'
+		riverctl map normal None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'

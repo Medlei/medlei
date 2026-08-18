@@ -1,0 +1,3 @@
+before-sleep swaylock
+timeout 128 'brightnessctl -s s 8%' resume 'brightnessctl -r'
+timeout 256 'wlr-randr --output eDP-1 --off' resume 'wlr-randr --output eDP-1 --on'

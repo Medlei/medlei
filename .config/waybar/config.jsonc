@@ -1,0 +1,16 @@
+{
+    "layer": "top",
+    "modules-left": [ ],
+    "modules-center": [ "wlr/taskbar" ],
+    "modules-right": ["battery", "clock"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format-alt": "{:%a, %n %d. %b  %H:%M}"
+    }
+}
