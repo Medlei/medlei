@@ -1,0 +1,79 @@
+{
+	"auto_pin_new_tab_groups": false,
+	"bookmark_bar": {
+		"show_on_all_tabs": true,
+		"show_tab_groups": false
+	},
+	"browser": {
+		"custom_chrome_frame": false,
+		"show_forward_button": false,
+		"theme": {
+			"is_grayscale2": true
+		}
+	},
+	"download": {
+		"default_directory": "/home/medlei/downloads",
+		"directory_upgrade": true
+	},
+	"enable_do_not_track": true,
+	"helium": {
+		"browser": {
+			"layout": 1,
+			"rounded_frame": false,
+			"shift_right_click_context_menu": false,
+			"show_avatar_button": false,
+			"show_back_button": false,
+			"show_dynamic_new_tab_button": false,
+			"show_media_button": false,
+			"show_reload_button": false,
+			"show_vertical_tabs_collapse_button": false
+		},
+		"completed_onboarding": true,
+		"global_privacy_control": true,
+		"services": {
+			"schema_version": 1,
+			"user_consented": true
+		},
+		"settings": {
+			"a11y": {
+				"copy_page_url_shortcut": false
+			},
+			"behavior": {
+				"vertical_collapse_shortcut": false
+			}
+		}
+	},
+	"https_first_balanced_mode_enabled": false,
+	"https_only_mode_auto_enabled": false,
+	"https_only_mode_enabled": true,
+	"intl": {
+		"selected_languages": "en-US,en"
+	},
+	"NewTabPage": {
+		"CustomizeChromeButtonOpenCount": 1,
+		"CustomizeChromeExplicitlyClosed": true
+	},
+	"ntp": {
+		"shortcuts_auto_removal_disabled": true,
+		"shortcust_visible": false
+	},
+	"savefile": {
+		"default_directory": "/home/medlei/downloads"
+	},
+	"spellcheck": {
+		"dictionaries": [
+			"en-US",
+			"en"
+		]
+	},
+	"default_search_provider_data": {
+		"template_url_data": {
+			"is_active": 1,
+			"keyword": "duckduckgo.com",
+			"short_name": "DuckDuckGo",
+			"starter_pack_id": 0,
+			"suggestions_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list",
+			"url": "https://duckduckgo.com/?kbj=1&k1=-1&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kbi=1&kpsb=-1&kbg=-1&kbe=0&q={searchTerms}"
+		}
+	}
+}

@@ -1,5 +1,14 @@
 .bash_history
 .cache/
+.config/dconf/
+.config/gtk-3.0/
+.config/net.imput.helium/*
+!.config/net.imput.helium/Default/
+.config/net.imput.helium/Default/*
+!.config/net.imput.helium/Default/Preferences
+!.config/net.imput.helium/Dictionaries/
+!.config/net.imput.helium/Local State
+.config/pulse/
 .config/VSCodium/*
 !.config/VSCodium/Dictionaries/
 !.config/VSCodium/Preferences
@@ -7,10 +16,6 @@
 .config/VSCodium/User/*
 !.config/VSCodium/User/snippets/
 !.config/VSCodium/User/settings.json
-.config/dconf/
-.config/gtk-3.0/
-.config/net.imput.helium/
-.config/pulse/
 .config/yay/
 .dotfiles/
 .local/*

@@ -1,16 +1,64 @@
 {
-    "layer": "top",
-    "modules-left": [ ],
-    "modules-center": [ "wlr/taskbar" ],
-    "modules-right": ["battery", "clock"],
-    "sway/window": {
-        "max-length": 50
-    },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-        "format-alt": "{:%a, %n %d. %b  %H:%M}"
-    }
+	"battery": {
+		"format": "{capacity}% {icon}",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"format-time": "{H}:{m}"
+	},
+	"clock": {
+		"format": "{:%a, %b %d%n%R %Z}",
+		"format-alt": "{:%A, %B %d, %Y%n%I:%M %p %Z}",
+		"justify": "center",
+		"tooltip": false
+	},
+	"height": 32,
+	"modules-center": [
+		"wlr/taskbar"
+	],
+	"modules-left": [
+		"tray"
+	],
+	"modules-right": [
+		"wireplumber",
+		"wireplumber#source",
+		"battery",
+		"network",
+		"clock"
+	],
+	"network": {
+		"format": "",
+		"format-disconnected": "",
+		"tooltip-format": "{essid} ({signalStrength}%)"
+	},
+	"output": "eDP-1",
+	"tray": {
+		"icon-size": 16,
+		"show-passive-items": true
+	},
+	"wireplumber": {
+		"format": "{icon}",
+		"format-icons": [ "", "", "" ],
+		"format-muted": "",
+		"on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+		"on-scroll-down": "",
+		"on-scroll-up": "",
+		"tooltip-format": "{volume}%"
+	},
+	"wireplumber#source": {
+		"format": "",
+		"format-muted": "",
+		"node-type": "Audio/Source",
+		"on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
+		"on-scroll-down": "",
+		"on-scroll-up": "",
+		"tooltip": false
+	},
+	"wlr/taskbar": {
+		"sort-by-app-id": true
+	}
 }

@@ -4,10 +4,9 @@ delta_brightness=4
 delta_moveView=64
 delta_resizeView=64
 delta_volume=4
-displayScale=2
 
 # bar
-	while echo all status $(cat /sys/class/power_supply/BAT0/capacity)% \($(cat /sys/class/power_supply/BAT0/status | tr "[:upper:]" "[:lower:]")\) \| $(date +"%a, %b %d | %I:%M %p %Z"); do sleep 1; done | sandbar -font monospace:size=10 -hide-normal-mode -scale $displayScale &
+	waybar &
 # brightness; mappings
 	riverctl map -repeat locked Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
 	riverctl map -repeat locked Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
@@ -83,7 +82,7 @@ displayScale=2
 			# setting...
 				for i in $(seq 1 8); do riverctl map normal Control+Mod4 $i set-view-tags $((1 << ($i - 1))); done
 # gamma
-	wlsunset_init.bash &
+	wlsunset -l 45 -L -93.1 &
 # idle
 	swayidle -w &
 # inputs
@@ -137,7 +136,7 @@ displayScale=2
 	riverctl map normal None XF86AudioPrev spawn 'playerctl previous'
 # outputs
 	# config
-		wlr-randr --output eDP-1 --scale $displayScale
+		wlr-randr --output eDP-1 --scale 2
 	# mappings
 		# output-attach-mode
 		# output-layout
@@ -146,15 +145,15 @@ displayScale=2
 # volume; mappings
 	# microphone
 		riverctl map -repeat locked Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
-	    riverctl map -repeat locked Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
-	    riverctl map -repeat normal Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
-	    riverctl map -repeat normal Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
+		riverctl map -repeat locked Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
+		riverctl map -repeat normal Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
+		riverctl map -repeat normal Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
 		riverctl map locked Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
 		riverctl map normal Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
 	# speaker
-	    riverctl map -repeat locked None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
-	    riverctl map -repeat locked None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
-	    riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
-	    riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
+		riverctl map -repeat locked None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
+		riverctl map -repeat locked None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
+		riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
+		riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
 		riverctl map locked None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'
 		riverctl map normal None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'

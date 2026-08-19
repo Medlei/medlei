@@ -1,6 +1,21 @@
 {
     "workbench.startupEditor": "none",
     "workbench.colorTheme": "Light 2026",
+    "workbench.activityBar.compact": true,
+    "git.enableSmartCommit": true,
+    "editor.autoIndentOnPaste": true,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.foldingImportsByDefault": true,
+    "editor.insertSpaces": false,
+    "editor.scrollOnMiddleClick": true,
+    "editor.smoothScrolling": true,
+    "editor.trimWhitespaceOnDelete": true,
+    "editor.formatOnPaste": true,
     "editor.minimap.enabled": false,
-    "workbench.activityBar.compact": true
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "window.controlsStyle": "hidden",
+    "window.dialogStyle": "custom",
+    "chat.agent.enabled": false,
+    "editor.cursorStyle": "line-thin"
 }
