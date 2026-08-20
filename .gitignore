@@ -3,11 +3,7 @@
 .config/dconf/
 .config/gtk-3.0/
 .config/net.imput.helium/*
-!.config/net.imput.helium/Default/
-.config/net.imput.helium/Default/*
-!.config/net.imput.helium/Default/Preferences
 !.config/net.imput.helium/Dictionaries/
-!.config/net.imput.helium/Local State
 .config/pulse/
 .config/VSCodium/*
 !.config/VSCodium/Dictionaries/
