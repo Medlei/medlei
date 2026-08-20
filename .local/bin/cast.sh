@@ -1,4 +1,3 @@
-#/usr/bin/sh
-
+#!/bin/sh
 "$@" & disown
 exit

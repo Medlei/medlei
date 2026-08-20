@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 command -v date &>/dev/null && {
 	date=`date +%d`
