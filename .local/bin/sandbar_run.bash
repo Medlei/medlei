@@ -43,7 +43,7 @@ while
 	}
 
 	[ $(("$SECONDS" % 30)) = 0 ] && {
-		date="`date +'%a, %b'` `suffixedDate.bash`"
+		date="`date +'%a, %b'` `suffixedDate.sh`"
 		read batCap </sys/class/power_supply/BAT0/capacity
 		timeZone="`date +%Z`"
 	}
