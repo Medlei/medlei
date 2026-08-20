@@ -6,7 +6,7 @@ delta_resizeView=64
 delta_volume=4
 
 # bar
-	waybar &
+	sandbar_run.bash &
 # brightness; mappings
 	riverctl map -repeat locked Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
 	riverctl map -repeat locked Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
