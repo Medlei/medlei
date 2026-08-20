@@ -18,6 +18,7 @@
 !.config/VSCodium/User/settings.json
 .config/yay/
 .dotfiles/
+.gitconfig
 .local/*
 !.local/bin/
 .vscode-oss*
