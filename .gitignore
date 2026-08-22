@@ -2,11 +2,9 @@
 .cache/
 .config/dconf/
 .config/gtk-3.0/
-.config/net.imput.helium/*
-!.config/net.imput.helium/Dictionaries/
+.config/net.imput.helium/
 .config/pulse/
 .config/VSCodium/*
-!.config/VSCodium/Dictionaries/
 !.config/VSCodium/Preferences
 !.config/VSCodium/User/
 .config/VSCodium/User/*
