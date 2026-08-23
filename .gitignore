@@ -16,3 +16,5 @@
 .local/*
 !.local/bin/
 .vscode-oss*
+downloads/
+pictures/

@@ -13,6 +13,12 @@ while
 	}
 
 	[ "`expr $SECONDS % 15`" = 0 ] && {
+		read _ _ networkSSID <<-EOF
+			`iwctl station wlan0 show | grep 'Connected network'`
+		EOF
+
+		[ -n "$networkSSID" ] || networkSSID=disconnected
+
 		read _ sinkVol sinkMute <<-EOF
 			`wpctl get-volume @DEFAULT_SINK@`
 		EOF
@@ -30,17 +36,11 @@ while
 		EOF
 
 		[ -n "$srcMute" ] && srcMute= || srcMute=
-
-		read _ _ networkSSID <<-EOF
-			`iwctl station wlan0 show | grep 'Connected network'`
-		EOF
-
-		[ -n "$networkSSID" ] || networkSSID=disconnected
 	}
 
-	[ "`expr $SECONDS % 30`" = 0 ] && {
-		date="`date +'%a, %b'` `suffixedDate.sh`"
+	[ "`expr $SECONDS % 60`" = 0 ] && {
 		read batCap </sys/class/power_supply/BAT0/capacity
+		date="`date +'%a, %b'` `suffixedDate.sh`"
 		timeZone="`date +%Z`"
 	}
 

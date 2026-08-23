@@ -6,7 +6,9 @@ delta_resizeView=64
 delta_volume=4
 
 # bar
-
+	sandbarWithFIFO.sh &
+	sleep 1
+	statusLine.sh >"$XDG_RUNTIME_DIR/sandbar/$!" 2>/dev/null &
 # brightness; mappings
 	riverctl map -repeat locked Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
 	riverctl map -repeat locked Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
@@ -148,12 +150,12 @@ delta_volume=4
 		riverctl map -repeat locked Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
 		riverctl map -repeat normal Mod4 XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SOURCE@ $delta_volume%-"
 		riverctl map -repeat normal Mod4 XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SOURCE@ $delta_volume%+"
-		riverctl map locked Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
-		riverctl map normal Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle'
+		riverctl map locked Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle && killall -SIGHUP statusLine.sh'
+		riverctl map normal Mod4 XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SOURCE@ toggle && killall -SIGHUP statusLine.sh'
 	# speaker
-		riverctl map -repeat locked None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
-		riverctl map -repeat locked None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
-		riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%-"
-		riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+"
-		riverctl map locked None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'
-		riverctl map normal None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle'
+		riverctl map -repeat locked None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%- && killall -SIGHUP statusLine.sh"
+		riverctl map -repeat locked None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+ && killall -SIGHUP statusLine.sh"
+		riverctl map -repeat normal None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $delta_volume%- && killall -SIGHUP statusLine.sh"
+		riverctl map -repeat normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_SINK@ $delta_volume%+ && killall -SIGHUP statusLine.sh"
+		riverctl map locked None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle && killall -SIGHUP statusLine.sh'
+		riverctl map normal None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_SINK@ toggle && killall -SIGHUP statusLine.sh'
