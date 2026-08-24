@@ -3,10 +3,10 @@
 date=`date +%d`
 
 case `expr $date % 10` in
-	*) dateSuffix=th;;
 	1) dateSuffix=st;;
 	2) dateSuffix=nd;;
-	3) dateSuffix=rd
+	3) dateSuffix=rd;;
+	*) dateSuffix=th
 esac
 
 echo $date$dateSuffix
