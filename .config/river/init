@@ -6,9 +6,7 @@ delta_resizeView=64
 delta_volume=4
 
 # bar
-	statusLine.sh 2>/dev/null &
-	fd_FIFO="$XDG_RUNTIME_DIR/statusLine/$!"
-	while :; do cat "$fd_FIFO"; done | sandbar -font monospace:size=10 -scale 2 &
+	sandbar_statusLine.sh &
 # brightness; mappings
 	riverctl map -repeat locked Mod4 XF86MonBrightnessDown spawn "brightnessctl s 0"
 	riverctl map -repeat locked Mod4 XF86MonBrightnessUp spawn "brightnessctl s 100%"
