@@ -16,5 +16,12 @@
 .local/*
 !.local/bin/
 .vscode-oss*
+desktop/
+documents/
 downloads/
+music/
 pictures/
+projects/
+public/
+templates/
+videos/
