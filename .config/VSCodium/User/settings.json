@@ -19,5 +19,6 @@
     "editor.cursorStyle": "line-thin",
     "workbench.colorTheme": "Light 2026",
     "git.openRepositoryInParentFolders": "never",
-    "clangd.path": "/home/medlei/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/22.1.6/clangd_22.1.6/bin/clangd"
+    "clangd.path": "/home/medlei/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/22.1.6/clangd_22.1.6/bin/clangd",
+    "git.confirmSync": false
 }
