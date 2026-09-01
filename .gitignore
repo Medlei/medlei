@@ -1,5 +1,6 @@
 .bash_history
 .cache/
+.config/coordinates
 .config/dconf/
 .config/gtk-3.0/
 .config/net.imput.helium/

@@ -82,7 +82,7 @@ delta_volume=4
 			# setting...
 				for i in $(seq 1 8); do riverctl map normal Control+Mod4 $i set-view-tags $((1 << ($i - 1))); done
 # gamma
-	wlsunset -l 45 -L -93.1 &
+	gamma.sh &
 # idle
 	swayidle -w &
 # inputs
